@@ -53,7 +53,7 @@ function handleFileUpload(event) {
                 audioBuffer = buffer;
                 console.log("Audio file decoded successfully");
                 document.getElementById('playPauseBtn').disabled = false;
-                document.getElementById('status').textContent = "Audio file loaded successfully. Click Play to start.";
+                document.getElementById('status').textContent = "Protect Your Ears | Copyleft (ɔ) All Rights Reversed";
             },
             (error) => {
                 console.error("Error decoding audio data:", error);
@@ -145,6 +145,17 @@ function draw() {
 
     animationId = requestAnimationFrame(draw);
 }
+
+const fileInput = document.getElementById('audioUpload');
+const fileChosen = document.getElementById('file-chosen');
+
+fileInput.addEventListener('change', function(){
+    if(this.files && this.files.length > 0){
+        fileChosen.textContent = this.files[0].name;
+    } else {
+        fileChosen.textContent = 'No file chosen';
+    }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     setupCanvas();

@@ -10,9 +10,19 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Oscilloscope</a></li>
+            <li><a href="formulas.html">DSP Formulas</a></li>
+        </ul>
+    </nav>
     <div class="container">
         <h1>\(e^{i\pi} + 1 = 0\)</h1>
-        <input type="file" id="audioUpload" accept="audio/*">
+        <div class="file-upload-container">
+            <label for="audioUpload" class="custom-file-upload">Choose File</label>
+            <input type="file" id="audioUpload" accept="audio/*">
+            <div id="file-chosen">No file chosen</div>
+        </div>
         <div class="controls">
             <button id="playPauseBtn" disabled>Play/Pause</button>
         </div>

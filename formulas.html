@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSP Formulas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Oscilloscope</a></li>
+            <li><a href="formulas.html" class="active">DSP Formulas</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Digital Signal Processing Formulas</h1>
+        
+        <section>
+            <h2>1. Signals and Systems</h2>
+            <div class="formula">
+                <h3>Discrete-time signal</h3>
+                \[ x[n] \quad \text{where } n \in \mathbb{Z} \]
+            </div>
+            <div class="formula">
+                <h3>Linear Time-Invariant (LTI) System</h3>
+                \[ y[n] = \sum_{k=-\infty}^{\infty} h[k]x[n-k] \]
+            </div>
+        </section>
+
+        <section>
+            <h2>2. Fourier Analysis</h2>
+            <div class="formula">
+                <h3>Discrete Fourier Transform (DFT)</h3>
+                \[ X[k] = \sum_{n=0}^{N-1} x[n] e^{-j2\pi kn/N} \]
+            </div>
+            <div class="formula">
+                <h3>Inverse Discrete Fourier Transform (IDFT)</h3>
+                \[ x[n] = \frac{1}{N} \sum_{k=0}^{N-1} X[k] e^{j2\pi kn/N} \]
+            </div>
+        </section>
+
+        <section>
+            <h2>3. Z-Transform</h2>
+            <div class="formula">
+                <h3>Z-Transform</h3>
+                \[ X(z) = \sum_{n=-\infty}^{\infty} x[n]z^{-n} \]
+            </div>
+            <div class="formula">
+                <h3>Inverse Z-Transform</h3>
+                \[ x[n] = \frac{1}{2\pi j} \oint X(z)z^{n-1}dz \]
+            </div>
+        </section>
+
+        <section>
+            <h2>4. Sampling and Reconstruction</h2>
+            <div class="formula">
+                <h3>Nyquist-Shannon Sampling Theorem</h3>
+                \[ f_s > 2f_{max} \]
+                where \(f_s\) is the sampling frequency and \(f_{max}\) is the highest frequency component in the signal.
+            </div>
+        </section>
+
+        <section>
+            <h2>5. Digital Filters</h2>
+            <div class="formula">
+                <h3>FIR Filter</h3>
+                \[ y[n] = \sum_{k=0}^{M-1} b_k x[n-k] \]
+            </div>
+            <div class="formula">
+                <h3>IIR Filter</h3>
+                \[ y[n] = \sum_{k=0}^{M} b_k x[n-k] - \sum_{k=1}^{N} a_k y[n-k] \]
+            </div>
+        </section>
+
+        <!-- Add more sections and formulas as needed -->
+
+    </div>
+</body>
+</html>

@@ -34,37 +34,73 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     min-height: 100vh;
 }
 
+nav {
+    background-color: var(--surface0);
+    padding: 0;
+    width: 100%;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background-color: var(--surface1);
+}
+
 .container {
-    text-align: center;
-    background-color: var(--mantle);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--mantle);
+    margin-top: -1px;
+    width: 80%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1 {
-    margin-bottom: 20px;
     color: var(--blue);
-    font-size: 2.5em;
+    margin-top: 0;
+    text-align: center;
+    width: 100%;
+}
+
+input[type="file"], .controls, #status {
+    width: 100%;
+    max-width: 600px;
     text-align: center;
 }
 
-input[type="file"] {
-    margin-bottom: 20px;
-    background-color: var(--surface0);
-    color: var(--subtext1);
-    border: 1px solid var(--overlay0);
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.controls {
-    margin-bottom: 20px;
+canvas {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
 }
 
 button {
@@ -91,16 +127,147 @@ button:disabled {
     cursor: not-allowed;
 }
 
-canvas {
-    background-color: var(--crust);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 #status {
     margin-top: 20px;
     color: var(--subtext0);
     background-color: var(--surface0);
     padding: 10px;
     border-radius: 5px;
+}
+
+nav {
+    background-color: var(--surface0);
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background-color: var(--surface1);
+}
+
+.formula {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--surface0);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.formula h3 {
+    color: var(--green);
+    margin-bottom: 10px;
+}
+
+section {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 30px;
+}
+
+section h2 {
+    color: var(--blue);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: var(--green);
+    border: none;
+    color: var(--base);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: var(--teal);
+}
+
+.controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#status {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.file-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.custom-file-upload {
+    background-color: var(--green);
+    border: none;
+    color: var(--base);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.custom-file-upload:hover {
+    background-color: var(--teal);
+}
+
+#file-chosen {
+    margin-top: 10px;
+    color: var(--subtext1);
+}
+
+.controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#status {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Ensure the container is centered */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
