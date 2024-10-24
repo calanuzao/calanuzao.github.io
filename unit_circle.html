@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Unit Circle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Oscilloscope</a></li>
+            <li><a href="formulas.html">DSP Formulas</a></li>
+            <li><a href="dsp_details.html">DSP Details</a></li>
+            <li><a href="unit_circle.html" class="active">Unit Circle</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Interactive Unit Circle</h1>
+        <div id="unit-circle-container">
+            <canvas id="unit-circle" width="400" height="400"></canvas>
+            <div id="angle-input">
+                <label for="angle">Angle (degrees): </label>
+                <input type="range" id="angle" min="0" max="360" value="0">
+                <span id="angle-value">0°</span>
+            </div>
+        </div>
+        <div id="complex-number">
+            <h2>Complex Number: <span id="complex-value"></span></h2>
+        </div>
+        <div id="explanation">
+            <h2>Understanding Complex Numbers in DSP</h2>
+            <p>Complex numbers are fundamental in digital signal processing because they allow us to represent and manipulate signals in both time and frequency domains. The unit circle provides a geometric interpretation of complex numbers and helps visualize concepts like phase and magnitude.</p>
+            <p>In DSP, complex numbers are used to:</p>
+            <ul>
+                <li>Represent signals with both magnitude and phase information</li>
+                <li>Perform frequency analysis using the Fourier Transform</li>
+                <li>Design and implement digital filters</li>
+                <li>Analyze and process signals in the complex plane</li>
+            </ul>
+        </div>
+    </div>
+    <script src="unit_circle.js"></script>
+</body>
+</html>

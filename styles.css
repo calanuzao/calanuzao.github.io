@@ -292,3 +292,38 @@ input[type="file"]::file-selector-button:hover {
 .container ul li a:hover {
     text-decoration: underline;
 }
+
+#unit-circle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#angle-input {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#angle-input label {
+    margin-right: 10px;
+}
+
+#angle-input input {
+    width: 200px;
+}
+
+#angle-value {
+    margin-left: 10px;
+}
+
+#complex-number {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#explanation {
+    max-width: 600px;
+    margin: 0 auto;
+}
