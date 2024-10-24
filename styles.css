@@ -271,3 +271,24 @@ input[type="file"]::file-selector-button:hover {
     flex-direction: column;
     align-items: center;
 }
+
+.container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.container ul li {
+    margin-bottom: 10px;
+    background-color: var(--surface0);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.container ul li a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.container ul li a:hover {
+    text-decoration: underline;
+}
