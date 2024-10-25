@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSP Visualizer - Fourier Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Oscilloscope</a></li>
+            <li><a href="formulas.html">DSP Formulas</a></li>
+            <li><a href="dsp_details.html">DSP Details</a></li>
+            <li><a href="unit_circle.html">Unit Circle</a></li>
+            <li><a href="dsp_visualizer.html" class="active">DSP Visualizer</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="content-wrapper">
+            <h1>DSP Visualizer: Fourier Analysis</h1>
+            <div class="section">
+                <div id="controls">
+                    <select id="inputSignal">
+                        <option value="sine">Sine</option>
+                        <option value="square">Square</option>
+                        <option value="sawtooth">Sawtooth</option>
+                    </select>
+                    <div>
+                        <label for="frequency">Frequency:</label>
+                        <input type="range" id="frequency" min="1" max="10" step="0.1" value="1">
+                        <span id="frequencyValue">1 Hz</span>
+                    </div>
+                    <div>
+                        <label for="phase">Phase:</label>
+                        <input type="range" id="phase" min="0" max="360" step="1" value="0">
+                        <span id="phaseValue">0°</span>
+                    </div>
+                    <div>
+                        <label for="numSamples">Number of Samples:</label>
+                        <input type="number" id="numSamples" min="16" max="1024" step="16" value="21">
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="plots-container">
+                    <div class="plot-row">
+                        <div id="timeDomainPlot"></div>
+                        <div id="frequencyDomainPlot"></div>
+                    </div>
+                    <div class="plot-row">
+                        <div id="phasePlot"></div>
+                        <div id="unitCirclePlot">
+                            <canvas id="unit-circle"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="dsp_visualizer.js"></script>
+</body>
+</html>

@@ -36,6 +36,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 nav {
@@ -71,17 +72,36 @@ nav ul li a:hover, nav ul li a.active {
 }
 
 .container {
-    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
-    background-color: var(--mantle);
-    margin-top: -1px;
-    width: 80%;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 800px;
+}
+
+h1, h2, h3 {
+    color: var(--blue);
+    margin-bottom: 20px;
+}
+
+p, ul, ol {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.section {
+    margin-bottom: 40px;
+    background-color: var(--surface0);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -294,16 +314,23 @@ input[type="file"]::file-selector-button:hover {
 }
 
 #unit-circle-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    width: 400px;
+    height: 400px;
+    margin: 20px auto;
+}
+
+#unit-circle {
+    width: 100%;
+    height: 100%;
 }
 
 #angle-input {
-    margin-top: 20px;
     display: flex;
     align-items: center;
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+    margin: 20px auto;
 }
 
 #angle-input label {
@@ -320,10 +347,273 @@ input[type="file"]::file-selector-button:hover {
 
 #complex-number {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 20px 0;
+    font-size: 1.2em;
 }
 
 #explanation {
-    max-width: 600px;
+    text-align: left;
+    width: 100%;
+    max-width: 800px;
     margin: 0 auto;
+}
+
+#explanation ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+#explanation li {
+    margin-bottom: 10px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Add these styles to your existing CSS file */
+
+#controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+#controls > div {
+    margin: 10px;
+}
+
+#plots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.plot-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.plot-row.center-plot {
+    justify-content: center;
+}
+
+#timeDomainPlot, #frequencyDomainPlot, #phasePlot, #reconstructedSignalPlot {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+#unitCirclePlot {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Ensure the container takes full width */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    #timeDomainPlot, #frequencyDomainPlot, #phasePlot, #reconstructedSignalPlot {
+        max-width: 100%;
+    }
+}
+
+#timeDomainPlot, #frequencyDomainPlot, #phasePlot, #reconstructedSignalPlot, #unitCirclePlot {
+    width: 95vw;
+    height: 80vh;
+    margin-bottom: 20vh;
+}
+
+#unit-circle {
+    width: 100%;
+    height: 100%;
+}
+
+.plot-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .plot-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #timeDomainPlot, #frequencyDomainPlot, #phasePlot, #reconstructedSignalPlot, #unitCirclePlot {
+        width: 100%;
+        max-width: 600px;
+        margin-bottom: 20px;
+    }
+}
+
+#timeDomainPlot, #frequencyDomainPlot, #phasePlot, #reconstructedSignalPlot, #unitCirclePlot {
+    width: 48%;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+#unit-circle {
+    width: 100%;
+    height: 100%;
+}
+
+.plot-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    #timeDomainPlot, #frequencyDomainPlot, #phasePlot, #reconstructedSignalPlot, #unitCirclePlot {
+        width: 100%;
+    }
+}
+
+#unit-circle-container {
+    width: 400px;
+    height: 400px;
+    margin: 20px 0;
+}
+
+#unit-circle {
+    width: 100%;
+    height: 100%;
+}
+
+#angle-input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#angle-input label {
+    display: none;
+}
+
+#angle-input input {
+    width: 100%;
+}
+
+#angle-value {
+    margin-left: 10px;
+}
+
+#complex-number {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+#explanation {
+    text-align: left;
+    width: 100%;
+}
+
+#explanation ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#explanation li {
+    background-color: #313244;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+h1, h2 {
+    color: #89b4fa;
+}
+
+.plots-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.plot-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.plot-row.center-plot {
+    justify-content: center;
+}
+
+#timeDomainPlot, #frequencyDomainPlot, #phasePlot, #unitCirclePlot {
+    width: 48%;
+    height: 400px;
+}
+
+#unit-circle {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .plot-row {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #timeDomainPlot, #frequencyDomainPlot, #phasePlot, #unitCirclePlot {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+#oscilloscope {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    margin: 20px 0;
+}
+
+.file-upload-container, .controls {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#copyright-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--surface0);
+    color: var(--text);
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    padding-bottom: 50px; /* Add some padding to prevent content from being hidden behind the copyright box */
 }
