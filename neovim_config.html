@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calanuzao</title>
+    <!-- Add Computer Modern font for LaTeX look -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@1.0.0/fonts.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="math-border"></div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Oscilloscope</a></li>
+            <li><a href="formulas.html">DSP Formulas</a></li>
+            <li><a href="dsp_details.html">DSP Details</a></li>
+            <li><a href="unit_circle.html">Unit Circle</a></li>
+            <li><a href="dsp_visualizer.html">DSP Visualizer</a></li>
+            <li><a href="neovim_config.html" class="active">Neovim Config</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>My Neovim Configuration</h1>
+        
+        <!-- Screenshot at the top -->
+        <div class="screenshot-container">
+            <img src="calodii-ide.png" alt="Neovim Configuration Screenshot" />
+            <p class="caption">Neovim Configuration for Audio Development in Python, Lua, C++, Markdown, LaTeX, MATLAB, and Obsidian</p>
+        </div>
+        
+        <div class="github-repo">
+            <a href="https://github.com/calanuzao/nvim" class="repo-link" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                View on GitHub
+            </a>
+        </div>
+
+        <section>
+            <h2>Key Features</h2>
+            <ul class="feature-list">
+                <li>
+                    <h3>Beautiful Start Screen</h3>
+                    <p>Custom Alpha dashboard with Calodii Studios logo, quick access menus, and startup statistics.</p>
+                </li>
+                <li>
+                    <h3>AI Integration</h3>
+                    <p>GitHub Copilot for code completion, ChatGPT integration, and Gen.nvim for local LLM integration (llama3).</p>
+                </li>
+                <li>
+                    <h3>LSP & Diagnostics</h3>
+                    <p>Code intelligence with LSP, inline diagnostics, and automatic linting with nvim-lint.</p>
+                </li>
+                <li>
+                    <h3>Theme Switching</h3>
+                    <p>Themery support with 15+ colorschemes including Catppuccin, Rose Pine, Dracula, and more.</p>
+                </li>
+                <li>
+                    <h3>Git Workflow</h3>
+                    <p>Complete Git integration with Gitsigns, Fugitive, Octo for GitHub PRs, and NeogitOrg.</p>
+                </li>
+                <li>
+                    <h3>Testing & Debugging</h3>
+                    <p>Comprehensive test runners with Neotest and advanced debugging with nvim-dap.</p>
+                </li>
+                <li>
+                    <h3>File Navigation</h3>
+                    <p>Multiple file explorers including Oil.nvim, Neo-tree, and advanced FZF integration.</p>
+                </li>
+                <li>
+                    <h3>Writing & Focus</h3>
+                    <p>Distraction-free writing with Zen Mode and Pencil for Markdown and prose.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Advanced Features</h2>
+            
+            <div class="feature-section">
+                <h3>LaTeX Editing Powerhouse</h3>
+                <p>Complete LaTeX editing environment with VimTeX integration:</p>
+                <ul>
+                    <li>OS-aware PDF viewer configuration (Skim on macOS, Zathura on Linux)</li>
+                    <li>Forward/reverse search with PDF viewers</li>
+                    <li>Automatic compilation on save</li>
+                    <li>UltiSnips integration for LaTeX snippets</li>
+                    <li>Intelligent spell-checking with custom keybindings</li>
+                </ul>
+            </div>
+            
+            <div class="feature-section">
+                <h3>Advanced Code Navigation</h3>
+                <p>Multiple options for efficient movement through code:</p>
+                <ul>
+                    <li>Jump to definitions, implementations, and references with LSP</li>
+                    <li>Flash.nvim for lightning-fast cursor movement</li>
+                    <li>Treesitter-based code navigation with textobjects</li>
+                    <li>Custom keymaps for function/class navigation</li>
+                    <li>Illuminate for highlighting symbol occurrences</li>
+                </ul>
+            </div>
+            
+            <div class="feature-section">
+                <h3>Multiple Language Support</h3>
+                <p>First-class support for a wide range of languages:</p>
+                <ul>
+                    <li>TypeScript/JavaScript ecosystem with ESLint integration</li>
+                    <li>Java/Kotlin with JDTLS and Gradle test runner</li>
+                    <li>Ruby with StandardRB, RSpec, and debugging support</li>
+                    <li>LaTeX with VimTeX</li>
+                    <li>Elixir with ElixirLS and test framework integration</li>
+                    <li>MATLAB support with vim-matlab</li>
+                    <li>And many more through LSP and Treesitter</li>
+                </ul>
+            </div>
+            
+            <div class="feature-section">
+                <h3>UI Enhancements</h3>
+                <p>Beautiful and functional interface elements:</p>
+                <ul>
+                    <li>Custom Lualine status bar with intelligent segments</li>
+                    <li>Noice.nvim for beautiful command line and notifications</li>
+                    <li>Treesitter context for showing current scope</li>
+                    <li>Telescope with custom pickers and extensions</li>
+                    <li>Which-key for discoverability of keybindings</li>
+                </ul>
+            </div>
+            
+            <div class="feature-section">
+                <h3>Terminal Integration</h3>
+                <p>Multiple ways to work with the terminal:</p>
+                <ul>
+                    <li>ToggleTerm for floating terminals</li>
+                    <li>Floaterm for additional terminal windows</li>
+                    <li>AsyncRun for background command execution</li>
+                    <li>Custom keybindings for quick terminal access</li>
+                </ul>
+            </div>
+            
+            <div class="feature-section">
+                <h3>Multiplicity Tools</h3>
+                <p>Tools for multiselect and batch operations:</p>
+                <ul>
+                    <li>vim-visual-multi for multiple cursor editing</li>
+                    <li>Surround operations with nvim-surround</li>
+                    <li>Treesitter-based text objects for structural selection</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+            <div class="code-container">
+                <pre><code># Clone the repository
+git clone https://github.com/yourusername/nvim-config.git ~/.config/nvim
+
+# Install lazy.nvim (plugin manager)
+git clone https://github.com/folke/lazy.nvim \
+    ~/.local/share/nvim/lazy/lazy.nvim
+
+# Open Neovim to automatically install plugins
+nvim</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Custom UI with Alpha Dashboard</h2>
+            <div class="code-container">
+                <pre><code>-- Custom Alpha dashboard configuration
+dashboard.section.header.val = {
+  [[⣿⣿⣿⣿⣿⣶⣄⣠⣴⣶⣶⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⡇⠀⣿⣿⠆⢰⣿⣷⠀ ]],
+  [[⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⢀⣄⣀⠀⠀⠀⣀⣠⣄⣀⣀⣀⠀⠸⣿⣿⠀⠀⠀⢀⡀⠀⣀⡀⠀⠀⠀⠀⣀⣠⣄⣸⣿⡇⠀⢈⣉⡀⠀⣉⣁⠀ ]],
+  [[⠛⠿⣿⣿⣿⣿⣿⣷⣹⣿⣿⣿⣧⠀⣰⣷⠀⠘⠿⣿⠇⠀⣾⣿⠿⠻⢿⣿⣿⠀⠀⣿⣿⠀⢀⣾⣿⡇⠀⢿⣿⣦⡀⢀⣾⣿⠟⠻⢿⣿⣿⠀⢸⣿⡇⠀⣿⣿⡆ ]],
+  [[⠀⢸⣿⣿⣿⡛⣿⣿⣷⣿⣿⣿⠟⠀⣿⣿⠀⠀⠀⠀⠀⢸⣿⡏⠀⠀⠀⢻⣿⡆⠀⢹⣿⡇⢸⣿⡟⠀⠀⠀⠹⣿⣧⢸⣿⡏⠀⠀⠀⣿⣿⡄⠈⣿⣿⠀⢸⣿⡇ ]],
+  [[⠀⠘⠿⣿⣿⣿⣾⣿⣿⣿⠏⠁⠀⠀⢻⣿⣧⡀⠀⠀⣀⠀⣿⣿⣄⠀⠀⢸⣿⣇⠀⢸⣿⣧⠘⣿⣿⣄⠀⠀⣠⣿⡟⠘⣿⣿⣄⠀⠀⢻⣿⡇⠀⣿⣿⡄⠘⣿⣧ ]],
+  [[⠀⠀  ⢸⣿⣿⣿⡏⣿⠇⠀⠀⠀⠀⠙⠿⣿⣿⣿⡿⠆⠈⠻⢿⣿⠀⠘⣿⣿⣷⠘⣿⣿⠀⠘⠻⣿⡄⠀⣿⠿⠁⠀⠘⠿⣿⣿⠀⠸⣿⡷⠀⢻⣿⡇⠀⣿⣿⠀]],
+  [[                                                                    ]],
+  [[                        calodii studios 🐝                          ]],
+  [[                                                                    ]],
+}</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Comprehensive Language Support</h2>
+            <div class="code-container">
+                <pre><code>-- Treesitter configuration for syntax highlighting
+configs.setup({
+  ensure_installed = {
+    "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query",
+    "elixir", "erlang", "heex", "eex", "java", "kotlin", "jq",
+    "dockerfile", "json", "html", "terraform", "go", "tsx", 
+    "bash", "ruby", "markdown", "java"
+  },
+  highlight = { enable = true },
+  indent = { enable = true },
+  incremental_selection = { enable = true },
+  textobjects = { 
+    select = { enable = true },
+    move = { enable = true },
+    swap = { enable = true }
+  }
+})</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Commands and Shortcuts</h2>
+            <div class="formula">
+                <code>:Format</code> - Format the current buffer using LSP
+            </div>
+            <div class="formula">
+                <code>:Specs</code> - Toggle diagnostic display
+            </div>
+            <div class="formula">
+                <code>:ToggleTerm</code> - Toggle floating terminal
+            </div>
+            <div class="formula">
+                <code>:Telescope</code> - Fuzzy finder for files, buffers, etc.
+            </div>
+            <div class="formula">
+                <code>:ChatGPT</code> - Open ChatGPT interface
+            </div>
+            <div class="formula">
+                <code>:ZenMode</code> - Enter distraction-free writing mode
+            </div>
+            <div class="formula">
+                <code>:Themery</code> - Open theme selection menu
+            </div>
+            <div class="formula">
+                <code>:Octo</code> - GitHub PR review and management
+            </div>
+            <div class="formula">
+                <code>:Oil</code> - File explorer with buffer-like interface
+            </div>
+            <div class="formula">
+                <code>:MarkdownPreview</code> - Live preview of Markdown documents
+            </div>
+        </section>
+
+        <section>
+            <h2>Powerful Theme System</h2>
+            <p>The configuration includes over 15 themes that can be easily switched using Themery:</p>
+            <div class="theme-grid">
+                <div class="theme-item">
+                    <h3>Catppuccin</h3>
+                    <div class="theme-color" style="background-color: #1e1e2e;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>Rose Pine</h3>
+                    <div class="theme-color" style="background-color: #191724;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>Dracula</h3>
+                    <div class="theme-color" style="background-color: #282a36;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>Tokyo Night</h3>
+                    <div class="theme-color" style="background-color: #1a1b26;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>Gruvbox</h3>
+                    <div class="theme-color" style="background-color: #282828;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>Cyberdream</h3>
+                    <div class="theme-color" style="background-color: #0d0e17;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>Kanagawa</h3>
+                    <div class="theme-color" style="background-color: #1f1f28;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>Nord</h3>
+                    <div class="theme-color" style="background-color: #2e3440;"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

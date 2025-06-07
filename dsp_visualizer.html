@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSP Visualizer - Fourier Analysis</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>DSP Visualizer</title>
+    <!-- Add Computer Modern font for LaTeX look -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@1.0.0/fonts.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div class="math-border"></div>
     <nav>
         <ul>
             <li><a href="index.html">Oscilloscope</a></li>
@@ -18,50 +21,386 @@
             <li><a href="dsp_details.html">DSP Details</a></li>
             <li><a href="unit_circle.html">Unit Circle</a></li>
             <li><a href="dsp_visualizer.html" class="active">DSP Visualizer</a></li>
+            <li><a href="neovim_config.html">Neovim Config</a></li>
         </ul>
     </nav>
     <div class="container">
-        <div class="content-wrapper">
-            <h1>DSP Visualizer: Fourier Analysis</h1>
-            <div class="section">
-                <div id="controls">
-                    <select id="inputSignal">
-                        <option value="sine">Sine</option>
-                        <option value="square">Square</option>
-                        <option value="sawtooth">Sawtooth</option>
-                    </select>
-                    <div>
-                        <label for="frequency">Frequency:</label>
-                        <input type="range" id="frequency" min="1" max="10" step="0.1" value="1">
-                        <span id="frequencyValue">1 Hz</span>
-                    </div>
-                    <div>
-                        <label for="phase">Phase:</label>
-                        <input type="range" id="phase" min="0" max="360" step="1" value="0">
-                        <span id="phaseValue">0°</span>
-                    </div>
-                    <div>
-                        <label for="numSamples">Number of Samples:</label>
-                        <input type="number" id="numSamples" min="16" max="1024" step="16" value="21">
-                    </div>
+        <h1>DSP Signal Visualizer</h1>
+        
+        <div id="controls">
+            <div>
+                <label for="signalType">Signal Type:</label>
+                <select id="signalType">
+                    <option value="sine">Sine Wave</option>
+                    <option value="cosine">Cosine Wave</option>
+                    <option value="square">Square Wave</option>
+                    <option value="triangle">Triangle Wave</option>
+                    <option value="sawtooth">Sawtooth Wave</option>
+                </select>
+            </div>
+            <div>
+                <label for="frequency">Frequency (Hz):</label>
+                <input type="range" id="frequency" min="1" max="50" value="5">
+                <span id="frequencyValue">5 Hz</span>
+            </div>
+            <div>
+                <label for="samplingRate">Sampling Rate (Hz):</label>
+                <input type="range" id="samplingRate" min="10" max="500" value="100">
+                <span id="samplingRateValue">100 Hz</span>
+            </div>
+            <div>
+                <label for="duration">Duration (s):</label>
+                <input type="range" id="duration" min="0.1" max="2" step="0.1" value="1">
+                <span id="durationValue">1 s</span>
+            </div>
+        </div>
+
+        <!-- Fixed layout for plots -->
+        <div id="plots">
+            <div class="plot-container">
+                <h3>Time Domain</h3>
+                <div class="plot-wrapper">
+                    <canvas id="timeDomainPlot"></canvas>
                 </div>
             </div>
-            <div class="section">
-                <div class="plots-container">
-                    <div class="plot-row">
-                        <div id="timeDomainPlot"></div>
-                        <div id="frequencyDomainPlot"></div>
-                    </div>
-                    <div class="plot-row">
-                        <div id="phasePlot"></div>
-                        <div id="unitCirclePlot">
-                            <canvas id="unit-circle"></canvas>
-                        </div>
-                    </div>
+            
+            <div class="plot-container">
+                <h3>Frequency Domain</h3>
+                <div class="plot-wrapper">
+                    <canvas id="frequencyDomainPlot"></canvas>
+                </div>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Phase Spectrum</h3>
+                <div class="plot-wrapper">
+                    <canvas id="phasePlot"></canvas>
+                </div>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Reconstructed Signal</h3>
+                <div class="plot-wrapper">
+                    <canvas id="reconstructedSignalPlot"></canvas>
                 </div>
             </div>
         </div>
+
+        <div id="explanation">
+            <h2>Understanding the Visualizations</h2>
+            <ul>
+                <li><strong>Time Domain:</strong> Shows the original continuous signal (blue) and its discrete samples (red dots)</li>
+                <li><strong>Frequency Domain:</strong> Displays the magnitude spectrum of the signal after applying the Discrete Fourier Transform</li>
+                <li><strong>Phase Spectrum:</strong> Shows the phase angle of each frequency component</li>
+                <li><strong>Reconstructed Signal:</strong> Demonstrates how the original signal can be reconstructed from its samples</li>
+            </ul>
+            <p>Experiment with different signal types, frequencies, and sampling rates to observe aliasing and other DSP phenomena.</p>
+        </div>
     </div>
-    <script src="dsp_visualizer.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get elements
+            const signalTypeSelect = document.getElementById('signalType');
+            const frequencyInput = document.getElementById('frequency');
+            const frequencyValue = document.getElementById('frequencyValue');
+            const samplingRateInput = document.getElementById('samplingRate');
+            const samplingRateValue = document.getElementById('samplingRateValue');
+            const durationInput = document.getElementById('duration');
+            const durationValue = document.getElementById('durationValue');
+            
+            // Initialize charts
+            const timeDomainCtx = document.getElementById('timeDomainPlot').getContext('2d');
+            const frequencyDomainCtx = document.getElementById('frequencyDomainPlot').getContext('2d');
+            const phaseCtx = document.getElementById('phasePlot').getContext('2d');
+            const reconstructedCtx = document.getElementById('reconstructedSignalPlot').getContext('2d');
+            
+            let timeDomainChart = new Chart(timeDomainCtx, {
+                type: 'line',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Continuous Signal',
+                            borderColor: '#0366D6',
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            fill: false
+                        },
+                        {
+                            label: 'Samples',
+                            borderColor: '#DC322F',
+                            backgroundColor: '#DC322F',
+                            borderWidth: 0,
+                            pointRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time (s)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Amplitude'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            let frequencyDomainChart = new Chart(frequencyDomainCtx, {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        label: 'Magnitude Spectrum',
+                        backgroundColor: '#0366D6'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Frequency (Hz)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Magnitude'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            let phaseChart = new Chart(phaseCtx, {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        label: 'Phase Spectrum',
+                        backgroundColor: '#586E75'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Frequency (Hz)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Phase (rad)'
+                            },
+                            min: -Math.PI,
+                            max: Math.PI
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            let reconstructedChart = new Chart(reconstructedCtx, {
+                type: 'line',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Original Signal',
+                            borderColor: '#0366D6',
+                            borderWidth: 1,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false
+                        },
+                        {
+                            label: 'Reconstructed Signal',
+                            borderColor: '#859900',
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time (s)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Amplitude'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            // Generate signal function
+            function generateSignal(type, frequency, time) {
+                switch(type) {
+                    case 'sine':
+                        return Math.sin(2 * Math.PI * frequency * time);
+                    case 'cosine':
+                        return Math.cos(2 * Math.PI * frequency * time);
+                    case 'square':
+                        return Math.sign(Math.sin(2 * Math.PI * frequency * time));
+                    case 'triangle':
+                        return 2 * Math.abs(2 * ((frequency * time) % 1) - 1) - 1;
+                    case 'sawtooth':
+                        return 2 * ((frequency * time) % 1) - 1;
+                    default:
+                        return Math.sin(2 * Math.PI * frequency * time);
+                }
+            }
+            
+            // Update all visualizations
+            function updateVisualizations() {
+                const signalType = signalTypeSelect.value;
+                const frequency = parseFloat(frequencyInput.value);
+                const samplingRate = parseFloat(samplingRateInput.value);
+                const duration = parseFloat(durationInput.value);
+                
+                // Update value displays
+                frequencyValue.textContent = `${frequency} Hz`;
+                samplingRateValue.textContent = `${samplingRate} Hz`;
+                durationValue.textContent = `${duration} s`;
+                
+                // Generate continuous time points (for display)
+                const numPointsContinuous = 1000;
+                const dtContinuous = duration / numPointsContinuous;
+                let continuousTimes = Array.from({length: numPointsContinuous}, (_, i) => i * dtContinuous);
+                let continuousSignal = continuousTimes.map(t => generateSignal(signalType, frequency, t));
+                
+                // Generate discrete samples
+                const numSamples = Math.floor(duration * samplingRate);
+                const dtSamples = duration / numSamples;
+                let sampleTimes = Array.from({length: numSamples}, (_, i) => i * dtSamples);
+                let samples = sampleTimes.map(t => generateSignal(signalType, frequency, t));
+                
+                // Compute DFT
+                // For simplicity, we'll use a very basic DFT implementation
+                const N = samples.length;
+                let magnitudes = [];
+                let phases = [];
+                let freqs = [];
+                
+                for (let k = 0; k < N/2; k++) {
+                    let real = 0;
+                    let imag = 0;
+                    const fk = k * samplingRate / N; // Frequency in Hz
+                    
+                    for (let n = 0; n < N; n++) {
+                        const angle = 2 * Math.PI * k * n / N;
+                        real += samples[n] * Math.cos(angle);
+                        imag -= samples[n] * Math.sin(angle);
+                    }
+                    
+                    real /= N;
+                    imag /= N;
+                    
+                    const magnitude = 2 * Math.sqrt(real*real + imag*imag); // Multiply by 2 for single-sided spectrum
+                    const phase = Math.atan2(imag, real);
+                    
+                    if (k > 0) { // Don't double the DC component
+                        magnitudes.push(magnitude);
+                        phases.push(phase);
+                        freqs.push(fk);
+                    } else {
+                        magnitudes.push(magnitude / 2); // DC component isn't doubled
+                        phases.push(phase);
+                        freqs.push(fk);
+                    }
+                }
+                
+                // Simple reconstruction (just for demonstration)
+                // In a real DSP system, proper interpolation would be used
+                let reconstructedSignal = continuousTimes.map(t => {
+                    let sum = 0;
+                    for (let i = 0; i < N/2; i++) {
+                        const freq = i * samplingRate / N;
+                        const angle = 2 * Math.PI * freq * t;
+                        const mag = magnitudes[i] / 2; // Divide by 2 because we doubled before
+                        const phase = phases[i];
+                        if (i === 0) { // DC component
+                            sum += mag;
+                        } else {
+                            sum += mag * Math.cos(angle + phase);
+                        }
+                    }
+                    return sum;
+                });
+                
+                // Update time domain chart
+                timeDomainChart.data.labels = continuousTimes;
+                timeDomainChart.data.datasets[0].data = continuousSignal.map((y, i) => ({x: continuousTimes[i], y}));
+                timeDomainChart.data.datasets[1].data = samples.map((y, i) => ({x: sampleTimes[i], y}));
+                timeDomainChart.update();
+                
+                // Update frequency domain chart
+                frequencyDomainChart.data.labels = freqs;
+                frequencyDomainChart.data.datasets[0].data = magnitudes;
+                frequencyDomainChart.update();
+                
+                // Update phase chart
+                phaseChart.data.labels = freqs;
+                phaseChart.data.datasets[0].data = phases;
+                phaseChart.update();
+                
+                // Update reconstruction chart
+                reconstructedChart.data.labels = continuousTimes;
+                reconstructedChart.data.datasets[0].data = continuousSignal.map((y, i) => ({x: continuousTimes[i], y}));
+                reconstructedChart.data.datasets[1].data = reconstructedSignal.map((y, i) => ({x: continuousTimes[i], y}));
+                reconstructedChart.update();
+            }
+            
+            // Set up event listeners
+            signalTypeSelect.addEventListener('change', updateVisualizations);
+            frequencyInput.addEventListener('input', updateVisualizations);
+            samplingRateInput.addEventListener('input', updateVisualizations);
+            durationInput.addEventListener('input', updateVisualizations);
+            
+            // Initial visualization
+            updateVisualizations();
+        });
+    </script>
 </body>
 </html>

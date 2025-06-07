@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSP Details and Resources</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>DSP Details</title>
+    <!-- Add Computer Modern font for LaTeX look -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@1.0.0/fonts.css">
     <link rel="stylesheet" href="styles.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
+    <div class="math-border"></div>
     <nav>
         <ul>
             <li><a href="index.html">Oscilloscope</a></li>
@@ -17,48 +19,80 @@
             <li><a href="dsp_details.html" class="active">DSP Details</a></li>
             <li><a href="unit_circle.html">Unit Circle</a></li>
             <li><a href="dsp_visualizer.html">DSP Visualizer</a></li>
+            <li><a href="neovim_config.html">Neovim Config</a></li>
         </ul>
     </nav>
     <div class="container">
-        <h1>Digital Signal Processing: In-Depth</h1>
-        
-        <section>
-            <h2>What is Digital Signal Processing?</h2>
-            <p>Digital Signal Processing (DSP) is a field of study that focuses on the analysis, manipulation, and synthesis of digital signals. It involves applying mathematical and computational algorithms to process discrete-time signals, which are sequences of numbers representing measurements or observations of physical phenomena. DSP has wide-ranging applications in areas such as audio and speech processing, image and video processing, telecommunications, biomedical engineering, and many other fields where data needs to be analyzed or transformed.</p>
-        </section>
+        <h1>Digital Signal Processing - The Details</h1>
 
         <section>
-            <h2>Key Concepts in DSP</h2>
+            <h2>Foundations of Digital Signal Processing</h2>
+            <p>Digital Signal Processing (DSP) is a field that deals with the analysis, transformation, and manipulation of signals in a digital representation. Signals are mathematical functions of time, space, or some other variable that carry information.</p>
+            
+            <div class="theorem">
+                <p>A discrete-time signal \(x[n]\) can be obtained by sampling a continuous-time signal \(x_c(t)\) at a sampling rate \(T_s\):</p>
+                \[ x[n] = x_c(nT_s) \]
+            </div>
+
+            <h3>Key Concepts:</h3>
             <ul>
-                <li>Sampling and Quantization</li>
-                <li>Fourier Transform and Frequency Domain Analysis</li>
-                <li>Digital Filters (FIR and IIR)</li>
-                <li>Convolution and Correlation</li>
-                <li>Windowing and Spectral Analysis</li>
-                <li>Multirate Signal Processing</li>
+                <li>Discrete-time signals and systems</li>
+                <li>Sampling and quantization</li>
+                <li>Linear time-invariant (LTI) systems</li>
+                <li>Convolution and frequency-domain analysis</li>
             </ul>
         </section>
 
         <section>
-            <h2>Recommended Books</h2>
-            <ul>
-                <li>"Digital Signal Processing: Principles, Algorithms and Applications" by John G. Proakis and Dimitris G. Manolakis</li>
-                <li>"Understanding Digital Signal Processing" by Richard G. Lyons</li>
-                <li>"Discrete-Time Signal Processing" by Alan V. Oppenheim and Ronald W. Schafer</li>
-                <li>"The Scientist and Engineer's Guide to Digital Signal Processing" by Steven W. Smith</li>
-                <li>"Digital Signal Processing: A Practical Approach" by Emmanuel C. Ifeachor and Barrie W. Jervis</li>
-                <li>"Applied Digital Signal Processing: Theory and Practice" by Dimitris G. Manolakis and Vinay K. Ingle</li>
-                <li>"Digital Signal Processing Using MATLAB" by Vinay K. Ingle and John G. Proakis</li>
-                <li>"Digital Signals Theory" by Brian McFee (Online Book)</li>
-            </ul>
+            <h2>The Discrete Fourier Transform</h2>
+            <p>The Discrete Fourier Transform (DFT) is a fundamental operation in DSP that transforms a finite sequence of equally-spaced samples into a sequence of equally-spaced samples of the discrete-time Fourier transform.</p>
+            
+            <div class="definition">
+                <p>For a sequence \(x[n]\) of length \(N\), the DFT is defined as:</p>
+                \[ X[k] = \sum_{n=0}^{N-1} x[n] e^{-j2\pi kn/N}, \quad k = 0,1,2,\ldots,N-1 \]
+            </div>
+            
+            <p>The Fast Fourier Transform (FFT) is an algorithm that computes the DFT efficiently, reducing the number of computations from \(O(N^2)\) to \(O(N \log N)\).</p>
         </section>
 
         <section>
-            <h2>Online Resources</h2>
+            <h2>Digital Filters</h2>
+            <h3>Finite Impulse Response (FIR) Filters</h3>
+            <p>FIR filters are digital filters with a finite impulse response. They are characterized by having a finite number of terms in their difference equation.</p>
+            
+            <div class="proof">
+                <p>The output of an FIR filter with \(M\) coefficients can be written as:</p>
+                \[ y[n] = \sum_{k=0}^{M-1} b_k x[n-k] \]
+                <p>Where \(b_k\) are the filter coefficients and \(x[n-k]\) are the delayed input samples.</p>
+            </div>
+
+            <h3>Infinite Impulse Response (IIR) Filters</h3>
+            <p>IIR filters have an infinite impulse response and include feedback terms in their difference equation.</p>
+            
+            <div class="lemma">
+                <p>The general form of an IIR filter is:</p>
+                \[ y[n] = \sum_{k=0}^{M} b_k x[n-k] - \sum_{k=1}^{N} a_k y[n-k] \]
+            </div>
+        </section>
+
+        <section>
+            <h2>Applications of DSP</h2>
             <ul>
-                <li><a href="https://www.dspguide.com/">The Scientist and Engineer's Guide to Digital Signal Processing (Online Version)</a></li>
-                <li><a href="https://www.coursera.org/specializations/digital-signal-processing">Coursera: Digital Signal Processing Specialization</a></li>
-                <li><a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-341-discrete-time-signal-processing-fall-2005/">MIT OpenCourseWare: Discrete-Time Signal Processing</a></li>
+                <li>Audio processing and filtering</li>
+                <li>Image and video processing</li>
+                <li>Speech recognition and synthesis</li>
+                <li>Biomedical signal processing</li>
+                <li>Communications systems</li>
+                <li>Radar and sonar systems</li>
+            </ul>
+        </section>
+
+        <section class="references">
+            <h2>References</h2>
+            <ul>
+                <li>Oppenheim, A.V. & Schafer, R.W. (2010). Discrete-Time Signal Processing (3rd ed.). Prentice Hall.</li>
+                <li>Proakis, J.G. & Manolakis, D.G. (2006). Digital Signal Processing (4th ed.). Prentice Hall.</li>
+                <li>Smith, S.W. (1997). The Scientist and Engineer's Guide to Digital Signal Processing. California Technical Publishing.</li>
             </ul>
         </section>
     </div>

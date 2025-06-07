@@ -116,7 +116,7 @@ function draw() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.lineWidth = 2;
-    ctx.strokeStyle = '#89b4fa'; // Catppuccin blue
+    ctx.strokeStyle = '#39FF14'; // Neon Green
     ctx.beginPath();
 
     const sliceWidth = canvas.width * 1.0 / bufferLength;
@@ -140,7 +140,7 @@ function draw() {
 
     // Add a glow effect
     ctx.shadowBlur = 10;
-    ctx.shadowColor = '#89b4fa'; // Catppuccin blue
+    ctx.shadowColor = '#0A0A08'; 
     ctx.stroke();
 
     animationId = requestAnimationFrame(draw);

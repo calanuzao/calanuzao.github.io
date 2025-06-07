@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Unit Circle</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Unit Circle Visualization</title>
+    <!-- Add Computer Modern font for LaTeX look -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@1.0.0/fonts.css">
     <link rel="stylesheet" href="styles.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
+    <div class="math-border"></div>
     <nav>
         <ul>
             <li><a href="index.html">Oscilloscope</a></li>
@@ -17,33 +19,182 @@
             <li><a href="dsp_details.html">DSP Details</a></li>
             <li><a href="unit_circle.html" class="active">Unit Circle</a></li>
             <li><a href="dsp_visualizer.html">DSP Visualizer</a></li>
+            <li><a href="neovim_config.html">Neovim Config</a></li>
         </ul>
     </nav>
     <div class="container">
-        <h1>Interactive Unit Circle</h1>
-        <div id="unit-circle-container">
-            <canvas id="unit-circle" width="600" height="600"></canvas>
-        </div>
+        <h1>Unit Circle Visualization</h1>
+        
+        <p>The unit circle is essential in understanding the relationship between complex exponentials and sinusoids. This interactive visualization demonstrates how a point moving around the unit circle relates to sine and cosine waves.</p>
+
         <div id="angle-input">
-            <label for="angle">Angle (degrees): </label>
-            <input type="range" id="angle" min="0" max="360" value="0">
-            <span id="angle-value">0°</span>
+            <label for="angle">Angle (radians):</label>
+            <input type="range" id="angle" min="0" max="6.28" step="0.01" value="0">
+            <span id="angle-value">0</span>
         </div>
+
         <div id="complex-number">
-            <h2>Complex Number: <span id="complex-value"></span></h2>
+            \( e^{j\theta} = \cos(\theta) + j\sin(\theta) = 1 + j0 \)
         </div>
-        <div id="explanation">
-            <h2>Understanding Complex Numbers in DSP</h2>
-            <p>Complex numbers are fundamental in digital signal processing because they allow us to represent and manipulate signals in both time and frequency domains. The unit circle provides a geometric interpretation of complex numbers and helps visualize concepts like phase and magnitude.</p>
-            <p>In DSP, complex numbers are used to:</p>
+
+        <div id="unit-circle-container">
+            <canvas id="unit-circle" width="400" height="400"></canvas>
+        </div>
+
+        <section id="explanation">
+            <h2>Understanding the Unit Circle in DSP</h2>
+            <p>In Digital Signal Processing, the unit circle in the complex plane has special significance:</p>
             <ul>
-                <li>Represent signals with both magnitude and phase information</li>
-                <li>Perform frequency analysis using the Fourier Transform</li>
-                <li>Design and implement digital filters</li>
-                <li>Analyze and process signals in the complex plane</li>
+                <li>Every point on the unit circle corresponds to a complex sinusoid with a specific frequency</li>
+                <li>The angle \(\theta\) determines the frequency of the sinusoid: \(\omega = \theta / T\), where \(T\) is the sampling period</li>
+                <li>Moving counterclockwise around the circle represents increasing frequency</li>
+                <li>A full rotation around the circle represents the sampling frequency \(f_s\)</li>
+                <li>Complex exponentials \(e^{j\omega n}\) are eigenfunctions of LTI systems</li>
             </ul>
-        </div>
+        </section>
+
+        <section id="common-angles">
+            <h2>Common Angles and Their Values</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Angle (radians)</th>
+                        <th>Angle (degrees)</th>
+                        <th>\(\cos(\theta)\)</th>
+                        <th>\(\sin(\theta)\)</th>
+                        <th>\(e^{j\theta}\)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>0°</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1 + j0</td>
+                    </tr>
+                    <tr>
+                        <td>\(\pi/4\)</td>
+                        <td>45°</td>
+                        <td>\(\sqrt{2}/2\)</td>
+                        <td>\(\sqrt{2}/2\)</td>
+                        <td>\(\sqrt{2}/2 + j\sqrt{2}/2\)</td>
+                    </tr>
+                    <tr>
+                        <td>\(\pi/2\)</td>
+                        <td>90°</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0 + j1</td>
+                    </tr>
+                    <tr>
+                        <td>\(\pi\)</td>
+                        <td>180°</td>
+                        <td>-1</td>
+                        <td>0</td>
+                        <td>-1 + j0</td>
+                    </tr>
+                    <tr>
+                        <td>\(3\pi/2\)</td>
+                        <td>270°</td>
+                        <td>0</td>
+                        <td>-1</td>
+                        <td>0 - j1</td>
+                    </tr>
+                    <tr>
+                        <td>\(2\pi\)</td>
+                        <td>360°</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1 + j0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </div>
-    <script src="unit_circle.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('unit-circle');
+            const ctx = canvas.getContext('2d');
+            const angleInput = document.getElementById('angle');
+            const angleValue = document.getElementById('angle-value');
+            const complexNumber = document.getElementById('complex-number');
+            
+            function drawUnitCircle() {
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                const radius = Math.min(centerX, centerY) - 20;
+                
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw coordinate axes
+                ctx.strokeStyle = '#DDDDDD';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(0, centerY);
+                ctx.lineTo(canvas.width, centerY);
+                ctx.moveTo(centerX, 0);
+                ctx.lineTo(centerX, canvas.height);
+                ctx.stroke();
+                
+                // Draw unit circle
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+                ctx.strokeStyle = '#002B36';
+                ctx.stroke();
+                
+                // Draw labels
+                ctx.fillStyle = '#555555';
+                ctx.font = '16px "CMU Serif", serif';
+                // Move Re label to right end of x-axis
+                ctx.fillText('Re', canvas.width - 40, centerY - 10);
+                // Move Im label to top of y-axis
+                ctx.fillText('Im', centerX + 5, 35);
+                ctx.fillText('0', centerX + 5, centerY + 15);     
+
+                // Get current angle
+                const angle = parseFloat(angleInput.value);
+                
+                // Calculate point on unit circle
+                const x = Math.cos(angle) * radius + centerX;
+                const y = -Math.sin(angle) * radius + centerY;
+                
+                // Draw line from center to point
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(x, y);
+                ctx.strokeStyle = '#0366D6';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Draw point
+                ctx.beginPath();
+                ctx.arc(x, y, 6, 0, 2 * Math.PI);
+                ctx.fillStyle = '#0366D6';
+                ctx.fill();
+                
+                // Update angle value display
+                angleValue.textContent = angle.toFixed(2);
+                
+                // Update complex number display
+                const cosValue = Math.cos(angle).toFixed(2);
+                const sinValue = Math.sin(angle).toFixed(2);
+                complexNumber.innerHTML = `\\( e^{j${angle.toFixed(2)}} = \\cos(${angle.toFixed(2)}) + j\\sin(${angle.toFixed(2)}) = ${cosValue} + j${sinValue} \\)`;
+                
+                // Refresh MathJax
+                if(window.MathJax) {
+                    MathJax.typeset();
+                }
+            }
+            
+            // Initial draw
+            drawUnitCircle();
+            
+            // Update on slider change
+            angleInput.addEventListener('input', drawUnitCircle);
+        });
+    </script>
 </body>
 </html>
