@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <!-- Add Computer Modern font for LaTeX look -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@1.0.0/fonts.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="math-border"></div>
+    <nav>
+        <ul>
+            <li><a href="index.html">About Me</a></li>
+            <li><a href="formulas.html">DSP Formulas</a></li>
+            <li><a href="dsp_details.html">DSP Details</a></li>
+            <li><a href="unit_circle.html">Unit Circle</a></li>
+            <li><a href="dsp_visualizer.html">DSP Visualizer</a></li>
+            <li><a href="neovim_config.html">NeoVim Configuration</a></li>
+            <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Portfolio</h1>
+        
+        <div class="github-repo">
+            <a href="https://github.com/calanuzao" class="repo-link" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                View My GitHub Profile
+            </a>
+        </div>
+
+        <section>
+            <h2>Audio & DSP Projects</h2>
+            
+            <div class="feature-section">
+                <h3>Noise Bliss</h3>
+                <p>An advanced acoustic scene analysis project focused on urban sound event detection. The system leverages deep learning architectures (CNN and TCN) to classify environmental sounds from the SONYC Urban Sound Tagging (SONYC-UST) dataset. This project represents a complete pipeline for audio processing, feature extraction, model training, and urban noise classification.</p>
+                <ul>
+                    <li>Advanced noise generation algorithms</li>
+                    <li>Real-time audio processing capabilities</li>
+                    <li>Cross-platform compatibility</li>
+                    <li>Modular design for easy extension</li>
+                </ul>
+                <div class="github-repo">
+                    <a href="https://github.com/calanuzao/noise-bliss" class="repo-link" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Project
+                    </a>
+                </div>
+            </div>
+            
+            <div class="feature-section">
+                <h3>VSS (Virtual Sound System)</h3>
+                <p>This project implements a Virtual Surround Sound (VSS) system using the SADIE HRTF database. The system processes 5.1 surround audio to create both a binaural output for headphone listening and a standard stereo downmix.</p>
+                <ul>
+                    <li>3D spatial audio rendering</li>
+                    <li>Room acoustics simulation</li>
+                    <li>HRTF processing capabilities</li>
+                    <li>Low-latency audio processing pipeline</li>
+                </ul>
+                <div class="github-repo">
+                    <a href="https://github.com/calanuzao/vss" class="repo-link" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Project
+                    </a>
+                </div>
+            </div>
+            
+            <div class="feature-section">
+                <h3>Hearing Aid EQ</h3>
+                <p>Simulation of Bilateral Sudden Sensorineural Hearing Loss (SSNHL) in MATLAB for Physical Acoustics in Directional Hearing.</p>
+                <ul>
+                    <li>Multiband compression algorithms</li>
+                    <li>Customizable frequency response curves</li>
+                    <li>Real-time filter coefficient adjustment</li>
+                    <li>Hearing profile integration</li>
+                </ul>
+                <div class="github-repo">
+                    <a href="https://github.com/calanuzao/hearingaidEQ" class="repo-link" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Project
+                    </a>
+                </div>
+            </div>
+            
+            <div class="feature-section">
+                <h3>Music Player</h3>
+                <p>A simple React Native application written in TypeScript that allows users to search for music and listen to short previews.</p>
+                <ul>
+                    <li>Gapless playback</li>
+                    <li>Audio format conversion</li>
+                    <li>Custom DSP effects integration</li>
+                    <li>Library management with metadata support</li>
+                </ul>
+                <div class="github-repo">
+                    <a href="https://github.com/calanuzao/musicplayer" class="repo-link" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Project
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Hardware & Electronics Projects</h2>
+            
+            <div class="feature-section">
+                <h3>Arduino BLE</h3>
+                <p>Bluetooth Low Energy implementation for Arduino-based projects and devices.</p>
+                <ul>
+                    <li>BLE peripheral and central mode implementations</li>
+                    <li>Custom service and characteristic definitions</li>
+                    <li>Power optimization techniques</li>
+                    <li>Mobile application integration examples</li>
+                </ul>
+                <div class="github-repo">
+                    <a href="https://github.com/calanuzao/arduino-ble" class="repo-link" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Project
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Academic & Educational Contributions</h2>
+            
+            <div class="feature-section">
+                <h3>MATLAB@NYU Website</h3>
+                <p>Created the MATLAB@NYU website, a resource for MATLAB and Simulink users at NYU.</p>
+                <ul>
+                    <li>Educational materials for DSP concepts</li>
+                    <li>Interactive tutorials for signal processing</li>
+                    <li>Resource library for MatLab functions</li>
+                    <li>Course integration materials</li>
+                </ul>
+                <div class="github-repo">
+                    <a href="https://github.com/nyumatlab/nyumatlab.github.io" class="repo-link" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Project
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="theme-grid">
+                <div class="theme-item">
+                    <h3>DSP</h3>
+                    <div class="theme-color" style="background-color: #1e88e5;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>Audio</h3>
+                    <div class="theme-color" style="background-color: #43a047;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>C++</h3>
+                    <div class="theme-color" style="background-color: #e53935;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>Python</h3>
+                    <div class="theme-color" style="background-color: #fdd835;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>MATLAB</h3>
+                    <div class="theme-color" style="background-color: #8e24aa;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>Arduino</h3>
+                    <div class="theme-color" style="background-color: #00acc1;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>Electronics</h3>
+                    <div class="theme-color" style="background-color: #fb8c00;"></div>
+                </div>
+                <div class="theme-item">
+                    <h3>COMSOL Multiphysics</h3>
+                    <div class="theme-color" style="background-color: #5e35b1;"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
